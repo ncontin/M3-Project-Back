@@ -9,6 +9,7 @@ require("./db");
 // https://www.npmjs.com/package/express
 const express = require("express");
 
+const { isAuthenticated } = require("./middleware/jwt.middleware"); // <== IMPORT
 const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
