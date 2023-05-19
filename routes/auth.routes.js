@@ -49,9 +49,9 @@ router.post("/login", async (req, res) => {
         }
       );
       // Send the token as the response
-      // res.status(200).json({ authToken: authToken });
+      res.status(200).json({ authToken: authToken });
       console.log("user logged in");
-      res.json(authToken);
+      // res.json(authToken);
     } else {
       // Password ISN'T correct
       res.status(401).json({ message: "Unable to authenticate the user" });
@@ -73,7 +73,7 @@ router.get("/verify", isAuthenticated, async (req, res, next) => {
   // // Send back the object with user data
   // // previously set as the token payload
   // res.status(200).json(req.payload);
-
+  console.log("req.payload", req.pizza, req.headers);
   const user = await User.findById(req.pizza.userId);
   res.status(200).json({ message: "User is authenticated", user });
 });

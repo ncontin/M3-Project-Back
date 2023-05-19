@@ -22,6 +22,10 @@ app.use("/api", indexRoutes);
 const authRouter = require("./routes/auth.routes");
 app.use("/auth", authRouter);
 
+const spotRoutes = require("./routes/spot.routes");
+app.use("/api/spots", spotRoutes);
+// add isAuthenticated later
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 
