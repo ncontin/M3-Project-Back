@@ -21,4 +21,13 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+router.get("/:spotId", async (req, res) => {
+  try {
+    const spot = await Spot.findById(req.params.spotId);
+    res.status(200).json(spot);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 module.exports = router;

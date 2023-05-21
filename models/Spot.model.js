@@ -22,6 +22,13 @@ const spotSchema = new Schema(
       type: Number,
       required: true,
     },
+
+    city: {
+      type: String,
+      required: true,
+      enum: ["London", "Rome", "Barcelona"],
+      default: "London",
+    },
   }
   //   {
   //     // this second object adds extra properties: `createdAt` and `updatedAt`
