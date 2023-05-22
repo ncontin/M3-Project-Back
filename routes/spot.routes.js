@@ -30,4 +30,25 @@ router.get("/:spotId", async (req, res) => {
   }
 });
 
+router.put("/:spotId", async (req, res) => {
+  const { spotId } = req.params;
+  const payload = req.body;
+
+  try {
+    const updateSpot = await Spot.findByIdAndUpdate(spotId, payload, { new: true });
+    res.status(200).json(updateSpot);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.delete("/:spotId", async (req, res) => {
+  try {
+    await Spot.findByIdAndDelete(req.params.spotId);
+    res.status(200).json({ message: "Spot successfully deleted" });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 module.exports = router;
