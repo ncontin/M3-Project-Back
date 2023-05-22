@@ -13,9 +13,9 @@ const spotSchema = new Schema(
       required: [true, "Description is required."],
     },
 
-    adress: {
+    address: {
       type: String,
-      required: [true, "Adress is required."],
+      required: [true, "Address is required."],
     },
 
     rating: {
