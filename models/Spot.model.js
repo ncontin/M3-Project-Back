@@ -29,6 +29,11 @@ const spotSchema = new Schema(
       enum: ["London", "Rome", "Barcelona"],
       default: "London",
     },
+
+    imageUrl: {
+      type: String,
+      required: true,
+    },
   }
   //   {
   //     // this second object adds extra properties: `createdAt` and `updatedAt`

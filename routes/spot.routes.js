@@ -2,10 +2,20 @@ const Spot = require("../models/Spot.model");
 
 const router = require("express").Router();
 
-router.post("/", async (req, res) => {
-  const payload = req.body;
+const uploader = require("../middleware/cloudinary.config");
+
+router.post("/", uploader.single("imageUrl"), async (req, res, next) => {
+  const { title, description, address, rating, city } = req.body;
+  const imageUrl = req.file.path;
   try {
-    const newSpot = await Spot.create(payload);
+    const newSpot = await Spot.create({
+      title,
+      description,
+      address,
+      rating,
+      city,
+      imageUrl,
+    });
     res.status(201).json(newSpot);
   } catch (error) {
     console.log(error);
@@ -35,7 +45,9 @@ router.put("/:spotId", async (req, res) => {
   const payload = req.body;
 
   try {
-    const updateSpot = await Spot.findByIdAndUpdate(spotId, payload, { new: true });
+    const updateSpot = await Spot.findByIdAndUpdate(spotId, payload, {
+      new: true,
+    });
     res.status(200).json(updateSpot);
   } catch (error) {
     console.log(error);
