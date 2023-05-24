@@ -40,14 +40,10 @@ router.post("/login", async (req, res) => {
     // Is the password correct
     if (bcryptjs.compareSync(req.body.password, potentialUser.password)) {
       // Password IS correct
-      const authToken = jwt.sign(
-        { userId: potentialUser._id },
-        process.env.TOKEN_SECRET,
-        {
-          algorithm: "HS256",
-          expiresIn: "6h",
-        }
-      );
+      const authToken = jwt.sign({ userId: potentialUser._id }, process.env.TOKEN_SECRET, {
+        algorithm: "HS256",
+        expiresIn: "6h",
+      });
       // Send the token as the response
       res.status(200).json({ authToken: authToken });
       console.log("user logged in");
@@ -73,8 +69,8 @@ router.get("/verify", isAuthenticated, async (req, res, next) => {
   // // Send back the object with user data
   // // previously set as the token payload
   // res.status(200).json(req.payload);
-  console.log("req.payload", req.pizza, req.headers);
-  const user = await User.findById(req.pizza.userId);
+  console.log("req.payload", req.payload, req.headers);
+  const user = await User.findById(req.payload.userId);
   res.status(200).json({ message: "User is authenticated", user });
 });
 
