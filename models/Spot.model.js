@@ -34,6 +34,12 @@ const spotSchema = new Schema(
       type: String,
       required: true,
     },
+
+    user_id: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   }
   //   {
   //     // this second object adds extra properties: `createdAt` and `updatedAt`
