@@ -23,7 +23,12 @@ const authRouter = require("./routes/auth.routes");
 app.use("/auth", authRouter);
 
 const spotRoutes = require("./routes/spot.routes");
+const commentRoutes = require("./routes/comment.routes");
+app.use("/api/comments", commentRoutes);
 app.use("/api/spots", spotRoutes);
+
+//app.use("/api/comments", isAuthenticated, commentRoutes);
+
 // add isAuthenticated later
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
