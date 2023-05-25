@@ -29,7 +29,7 @@ router.get("/:id", async (req, res) => {
     const commentId = req.params.id;
 
     // Find the comment by its ID
-    const comment = await Comment.find({ spot: commentId });
+    const comment = await Comment.find({ spot: commentId }).populate("user_id");
     console.log(comment);
     if (!comment) {
       return res.status(404).json({ message: "Comment not found" });
